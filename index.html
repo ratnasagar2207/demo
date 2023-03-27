@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+    <style>
+     
+    body{
+        background-size: 100% 100vh;
+        display: flex;
+        justify-content: center;
+        cursor: default;
+    }
+    #Time{
+        font-size: 20vw;
+        position: absolute;
+        bottom: 20vh;
+        color:chartreuse;
+        text-shadow: 5px 5px 5px black;
+    }
+    #Date{
+        font-size: 10vw;
+        position: absolute;
+        bottom: 20vh;
+        color: whitesmoke;
+        text-shadow: 5px 5px 5px black;
+
+
+    }
+    #Day{
+        font-size: 10vw;
+        position: absolute;
+        bottom: -2vh;
+        color:royalblue;
+        text-shadow: 5px 5px 5px black;
+    }
+    #Sec{
+        font-size: 40vw;
+        position: absolute;
+        top: -62vh;
+        z-index: -1;
+        color: gold;
+        text-shadow: 5px 5px 5px black;
+    }
+    #Greet{
+        width: 100vw;
+        height: 100vh;
+        background-color: gray;
+        position: fixed;
+        z-index: 3;
+        top: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: whitesmoke;
+        font-size: 5vw;
+        letter-spacing: 10px;
+        word-spacing: 20px;
+        text-shadow: 5px 5px 5px black;
+    }
+    #close{
+        position: absolute;
+        top: 40px;
+        right: 50px;
+        background-color: transparent;
+        border: none;
+        font-size: 40px;
+        color: whitesmoke;
+        transition: rotate 0.2s;
+        cursor: pointer;
+    }
+    #close:hover{
+        rotate: 360deg;
+        
+    }
+    </style>
+</head>
+<body id="back" onload="greet()">
+    <div id="Greet">
+        <button onclick="nogreet()" id="close">X</button>
+        <h1 id="GreetMessage"></h1>
+    </div>
+     <h1 id="Time"></h1>
+<h1 id="Date"></h1>
+<h1 id="Day"></h1>
+<h1 id="Sec"></h1>
+    <script>
+        function nogreet()
+        {
+            document.getElementById("Greet").setAttribute("style","display:none")
+        }
+        function greet()
+        {
+            var date=new Date();
+            var hh=date.getHours();
+            if(hh>6&&hh<12)
+            {
+                document.getElementById("GreetMessage").innerHTML="Gud Morning"
+            }
+            else  if(hh>=12&&hh<16)
+            {
+                document.getElementById("GreetMessage").innerHTML="Gud Afternoon"
+            }
+            else  if(hh>=16&&hh<20)
+            {
+                document.getElementById("GreetMessage").innerHTML="Gud Evening"
+            }
+            else
+            {
+                document.getElementById("GreetMessage").innerHTML="Gud Sleep"
+            }
+            dateTime()
+        }
+        function dateTime()
+        {
+
+        
+           var date=new Date()
+        var hh=date.getHours()
+        var mm =date.getMinutes()
+        var ss =date.getSeconds()
+        var mo =date.getMonth()
+        var  dt=date.getDate()
+        var  yy=date.getFullYear()
+        var day =date.getDay()
+       
+    var am_pm="am"
+    if(hh>=12)
+    {
+    am_pm="pm"
+    if(hh>=13)
+    {
+    hh-=12;
+   }
+
+    }
+    if(mo==0)
+    {
+        mo="jan"    
+    }
+    else if(mo==1)
+    {
+        mo="Feb"    
+    }
+    else if(mo==2)
+    {
+        mo="mar"    
+    }
+    else if(mo==3)
+    {
+        mo="apr"    
+    }
+    else if(mo==4)
+    {
+        mo="may"    
+    }
+    else if(mo==5)
+    {
+        mo="jun"    
+    }
+    else if(mm==6)
+    {
+        mm="jul"    
+    }
+    else if(mo==7)
+    {
+        mo="aug"    
+    }
+    else if(mo==8)
+    {
+        mo="se"    
+    }
+    else if(mo==9)
+    {
+        mo="oct"    
+    }
+    else if(mo==10)
+    {
+        mo="nov"    
+    }
+    else
+    {
+        mo="dec"    
+    }
+
+    
+
+    switch(day)
+    {
+    case 0:
+          day="Sunday"
+          document.getElementById("back").style.backgroundImage="url(./sunday.jpg)"
+            break;
+            case 1:
+                day="Monday"
+                document.getElementById("back").style.backgroundImage="url(./mon.jpg)"
+            break;
+            case 2:
+                day="Tuesday"
+                document.getElementById("back").style.backgroundImage="url(./tues.jpg)"
+            break;
+            case 3:
+            day="Wednesday"
+            document.getElementById("back").style.backgroundImage="url(./wed.jpg)"
+            break;
+            case 4:
+                day="Thursday"
+                document.getElementById("back").style.backgroundImage="url(./thur.jpg)"
+            break;
+            case 5:
+                day="Friday"
+                document.getElementById("back").style.backgroundImage="url(./friday.jpg)"
+            break;
+            case 6:
+                day="Saturday"
+                document.getElementById("back").style.backgroundImage="url(./sat.jpg)"
+          break;
+    }
+    var toltime=hh+":"+mm+" "+am_pm
+    document.getElementById("Time").innerHTML=toltime;
+    var toldate=dt+"/"+mo+"/"+yy
+    document.getElementById("Date").innerHTML=toldate;
+    document.getElementById("Sec").innerHTML=ss;
+document.getElementById("Day").innerHTML=day;
+    console.log(hh,mm,ss,mo,dt,yy,day);
+    var update=setTimeout(function()
+    {
+        dateTime()
+    },1000);
+    }
+    var close=setTimeout(n,5000)
+</script>
+</body>
+</html>
